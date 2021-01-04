@@ -5,14 +5,35 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import 'jquery/dist/jquery.min.js';
 import 'popper.js/dist/umd/popper.min.js';
+import Mic from './Mic';
 
 class NavBar extends Component {
+	navigationFunction = (page) => {
+		console.log('Navigating to ', page);
+		page = page.toLowerCase();
+		if (page === 'login') {
+			//Navigate to login
+		} else if (page === 'home') {
+			//Navigate to Home
+		}
+	};
+	commands = [
+		{
+			command: 'Go to * page',
+			callback: this.navigationFunction,
+		},
+		{
+			command: 'Go to *',
+			callback: this.navigationFunction,
+		},
+	];
 	render() {
 		return (
 			<nav className="navbar navbar-expand-lg navbar-light bg-light border-bottom">
 				<button className="btn" id="menu-toggle" onClick={() => this.props.toggleSidebar()}>
 					<span className="navbar-toggler-icon"></span>
 				</button>
+
 				<div id="navbarSupportedContent">
 					<div className="navbar-nav ml-auto mt-2 mt-lg-0">
 						<span className="nav-link">
@@ -26,6 +47,7 @@ class NavBar extends Component {
 						</span>
 					</div>
 				</div>
+				<Mic commands={this.commands}></Mic>
 			</nav>
 		);
 	}
